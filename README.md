@@ -11,6 +11,9 @@ This application requires you to have node installed as well as mongodb locally 
 - cd beers-of-america
 - npm install
 - create file keys.js at the root level
+- mongod
+- node index.js
+
 
 # API
 The API used for this application is BreweryDB http://www.brewerydb.com/developers You will need to provide your own key in keys.js. I have not provided my keys.js file for obvious reasons.
@@ -21,4 +24,9 @@ The API used for this application is BreweryDB http://www.brewerydb.com/develope
 * hapijs
 * AngularJS 2
 * Typescript
- 
+* Gulp
+
+# Important notes
+get your tsd.d.ts file straight to get all the pieces
+
+/// <reference path="../typings/tsd.d.ts" />
