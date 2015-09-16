@@ -10,24 +10,21 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var angular2_1 = require('angular2/angular2');
-var http_1 = require('angular2/http');
-var Map_1 = require('modules/states/service/Map');
-var State = (function () {
-    function State(http) {
-        var _this = this;
-        this.result = [{ name: 'hello' }];
-        http.get('/states').toRx().subscribe(function (res) { return _this.result = res.json(); });
+var MapCmp = (function () {
+    function MapCmp() {
+        this.data = [];
     }
-    State = __decorate([
+    ;
+    MapCmp = __decorate([
         angular2_1.Component({
-            selector: 'state-list'
+            selector: 'map',
+            properties: ['data']
         }),
         angular2_1.View({
-            directives: [angular2_1.NgFor, Map_1.MapCmp],
-            template: "\n    <article>\n        <h2>States</h2>\n            <ul>\n              <li *ng-for=\"#item of result\" id=\"state-{{item.abbr}}\" >\n                  {{item.name}}\n              </li>\n          </ul>\n      </article>\n      <map [data]=\"result\"></map>\n\n    "
+            template: "\n    <div id=\"usa-map\" class=\"map-panel\">\n        {{data[0].name}}\n    </div>\n    "
         }), 
-        __metadata('design:paramtypes', [http_1.Http])
-    ], State);
-    return State;
+        __metadata('design:paramtypes', [])
+    ], MapCmp);
+    return MapCmp;
 })();
-exports.State = State;
+exports.MapCmp = MapCmp;
