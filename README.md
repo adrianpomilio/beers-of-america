@@ -29,4 +29,4 @@ The API used for this application is BreweryDB http://www.brewerydb.com/develope
 # Important notes
 get your tsd.d.ts file straight to get all the pieces
 
-/// <reference path="../typings/tsd.d.ts" />
+<reference path="../typings/tsd.d.ts" />

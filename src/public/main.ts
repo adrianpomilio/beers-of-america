@@ -4,34 +4,35 @@ import {HTTP_BINDINGS} from 'angular2/http';
 import {ROUTER_BINDINGS, LocationStrategy, HashLocationStrategy} from 'angular2/router';
 import {RouterLink, RouteConfig, Router, RouterOutlet, Location, RouteParams} from 'angular2/router';
 
-
-import {Beer} from 'modules/beer/service/Beer';
-import {State} from 'modules/states/service/State';
+import {Home} from 'modules/home/Home';
+import {Beer} from 'modules/beer/Beer';
+import {State} from 'modules/states/State';
 
 @Component({
   selector: 'app'
 })
 @View({
   template: `
-  <div class="container">
-    <nav class="navbar navbar-default">
-        <div class="container-fluid">
-            <div>
-                <ul class="nav navbar-nav">
+    <nav>
+        <div class="nav-wrapper">
+            <a href="#" class="brand-logo right">Beers of America</a>
+            <ul id="nav-mobile" class="left hide-on-med-and-down">
+                    <li ><a [router-link]="['/home']" class="link">Home</a></li>
                     <li ><a [router-link]="['/state']" class="link">States</a></li>
                     <li ><a [router-link]="['/beer']" class="link">Beer</a></li>
-                </ul>
-            </div>
+            </ul>
         </div>
     </nav>
-</div>
+    <div class="container">
+        <router-outlet ></router-outlet>
+    </div>
 
-<router-outlet></router-outlet>
   `,
-   directives: [State, Beer, RouterLink, RouterOutlet]
+   directives: [State, Beer, Home, RouterLink, RouterOutlet]
 })
 
 @RouteConfig([
+    {path: '/', component: Home, as: 'home'},
     {path: '/state', component: State, as: 'state'},
     {path: '/beer', component: Beer, as: 'beer'}
 ])

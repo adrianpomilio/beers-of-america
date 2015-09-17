@@ -7,10 +7,13 @@ import {Http} from 'angular2/http'
 
 @View({
     template: `
-      <article>
-      <h2>Beers</h2>
-          <ul>
-              <li *ng-for="#item of result.data">
+      <article class="card-panel">
+      <h2>Beers <span class="new badge">{{result.data.length}}</span></h2>
+        <div class="progress">
+            <div class="indeterminate"></div>
+        </div>
+          <ul class="collection" >
+              <li *ng-for="#item of result.data" class="collection-item">
                   {{item.nameDisplay}}
               </li>
           </ul>

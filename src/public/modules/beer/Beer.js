@@ -22,7 +22,7 @@ var Beer = (function () {
             selector: 'beer-list'
         }),
         angular2_1.View({
-            template: "\n      <article>\n      <h2>Beers</h2>\n          <ul>\n              <li *ng-for=\"#item of result.data\">\n                  {{item.nameDisplay}}\n              </li>\n          </ul>\n      </article>\n    ",
+            template: "\n      <article class=\"card-panel\">\n      <h2>Beers <span class=\"new badge\">{{result.data.length}}</span></h2>\n        <div class=\"progress\">\n            <div class=\"indeterminate\"></div>\n        </div>\n          <ul class=\"collection\" >\n              <li *ng-for=\"#item of result.data\" class=\"collection-item\">\n                  {{item.nameDisplay}}\n              </li>\n          </ul>\n      </article>\n    ",
             directives: [angular2_1.NgFor]
         }), 
         __metadata('design:paramtypes', [http_1.Http])

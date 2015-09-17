@@ -10,24 +10,19 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var angular2_1 = require('angular2/angular2');
-var http_1 = require('angular2/http');
-var Map_1 = require('modules/states/service/Map');
-var State = (function () {
-    function State(http) {
-        var _this = this;
-        this.result = [{ name: 'hello' }];
-        http.get('/states').toRx().subscribe(function (res) { return _this.result = res.json(); });
+var Home = (function () {
+    function Home() {
+        this.message = 'Sincerely, <br/> Adrian Pomilio';
     }
-    State = __decorate([
+    Home = __decorate([
         angular2_1.Component({
-            selector: 'state-list'
+            selector: 'home'
         }),
         angular2_1.View({
-            directives: [angular2_1.NgFor, Map_1.MapCmp],
-            template: "\n    <article>\n        <h2>States</h2>\n            <ul>\n              <li *ng-for=\"#item of result\" id=\"state-{{item.abbr}}\" >\n                  {{item.name}}\n              </li>\n          </ul>\n      </article>\n      <map [data]=\"result\"></map>\n\n    "
+            template: "\n      <article class=\"card-panel\">\n      <h2>Welcome to Angular 2</h2>\n          <p>Because you are embarking on the bleeding edge, it only seems fair to have some beer.</p>\n          <p>You're going to need it... quite a bit of it.  Cheers!</p>\n          <p>{{message}}</p>\n      </article>\n    "
         }), 
-        __metadata('design:paramtypes', [http_1.Http])
-    ], State);
-    return State;
+        __metadata('design:paramtypes', [])
+    ], Home);
+    return Home;
 })();
-exports.State = State;
+exports.Home = Home;
