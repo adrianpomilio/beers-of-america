@@ -10,14 +10,24 @@ import {Tooltip} from '../directives/tooltip';
 @View({
     template: `
       <article class="card-panel">
-      <h2>Beers <span class="new badge">{{result.data.length}}</span></h2>
-      <label>Get Some Beer:</label>
-      <input type="text" #search name="search" />
-      <button (click)="getBeers(search.value)">go</button>
+      <h2>Beers </h2>
+        <div class="input-field col s6">
+
+          <input type="text" #search name="search" />
+          <label for="icon_prefix">Beer</label>
+          <i class="material-icons btn" (click)="getBeers(search.value)">search</i>
+          </div>
+
+      <p>{{favorites.length}} Favorites</p>
+      <p>{{result.data.length}} Beers Found</p>
           <ul class="collection" >
-              <li *ng-for="#item of result.data" class="collection-item" [tooltip]="item.nameDisplay">
-                  {{item.nameDisplay}}
-              </li>
+          <li class="collection-item avatar" *ng-for="#item of result.data" class="collection-item">
+              <img src="{{item.icon}}" alt="" class="circle">
+              <span class="title">{{item.nameDisplay}}</span>
+              <p>{{item.description}}
+              </p>
+              <a (click)="saveBeer(item)" class="secondary-content btn"><i class="material-icons">favorite</i></a>
+            </li>
           </ul>
       </article>
     `,
@@ -28,10 +38,12 @@ export class Beer {
     result: Object;
     error: Object;
     http:Http;
+    favorites:Array<Object>;
 
 
     constructor(http: Http) {
         this.result = {data:[]};
+        this.favorites = [];
         this.http = http;
 
     }
@@ -44,6 +56,10 @@ export class Beer {
             }
         );
     };
+
+    saveBeer(obj:Object){
+        this.favorites.push(obj);
+    }
 
 
 }
