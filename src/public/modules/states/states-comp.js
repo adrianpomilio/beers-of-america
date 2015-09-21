@@ -11,23 +11,26 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var angular2_1 = require('angular2/angular2');
 var http_1 = require('angular2/http');
-var Map_1 = require('modules/states/Map');
+var map_comp_1 = require('modules/states/map-comp');
 var State = (function () {
     function State(http) {
         var _this = this;
-        this.result = [{ name: 'hello' }];
-        http.get('/states').toRx().subscribe(function (res) { return _this.result = res.json(); });
+        this.result = [];
+        http.get('/states').toRx().subscribe(function (res) {
+            _this.result = res.json();
+        });
     }
     State = __decorate([
         angular2_1.Component({
             selector: 'state-list'
         }),
         angular2_1.View({
-            directives: [angular2_1.NgFor, Map_1.MapCmp],
-            template: "\n    <article class=\"card-panel\" >\n        <h2>States</h2>\n            <ul class=\"collection\">\n              <li *ng-for=\"#item of result\" id=\"state-{{item.abbr}}\" class=\"collection-item\" >\n                  {{item.name}}\n              </li>\n          </ul>\n      </article>\n      <map clas=\"card-panel\" [data]=\"result\"></map>\n\n    "
+            directives: [angular2_1.NgFor, map_comp_1.MapCmp],
+            template: "\n    <article class=\"card-panel\" >\n        <h2>States</h2>\n            <ul class=\"collection\">\n              <li *ng-for=\"#item of result\" id=\"state-{{item.abbr}}\" class=\"collection-item\" >\n                  {{item.name}}\n              </li>\n          </ul>\n      </article>\n      <map-view clas=\"card-panel\" [data]=\"result\"></map-view>\n\n    "
         }), 
         __metadata('design:paramtypes', [http_1.Http])
     ], State);
     return State;
 })();
 exports.State = State;
+//# sourceMappingURL=states-comp.js.map

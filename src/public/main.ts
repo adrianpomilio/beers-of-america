@@ -5,8 +5,8 @@ import {ROUTER_BINDINGS, LocationStrategy, HashLocationStrategy} from 'angular2/
 import {RouterLink, RouteConfig, Router, RouterOutlet, Location, RouteParams} from 'angular2/router';
 
 import {Home} from 'modules/home/Home';
-import {Beer} from 'modules/beer/Beer';
-import {State} from 'modules/states/State';
+import {Beer} from './modules/beer/beer-comp';
+import {State} from 'modules/states/states-comp';
 
 @Component({
   selector: 'app'
@@ -14,7 +14,7 @@ import {State} from 'modules/states/State';
 @View({
   template: `
     <nav>
-        <div class="nav-wrapper">
+        <div class="nav-wrapper blue lighten-3">
             <a href="#" class="brand-logo right">Beers of America</a>
             <ul id="nav-mobile" class="left hide-on-med-and-down">
                     <li ><a [router-link]="['/home']" class="link">Home</a></li>

@@ -24,7 +24,12 @@ var Beer = (function () {
             _this.result = res.json();
         });
     };
-    ;
+    Beer.prototype.keyupGetBeers = function (event, search) {
+        /* a place where typing can frustrate see ANY */
+        if (event.keyCode == 13) {
+            this.getBeers(search);
+        }
+    };
     Beer.prototype.saveBeer = function (obj) {
         this.favorites.push(obj);
     };
@@ -36,7 +41,7 @@ var Beer = (function () {
             selector: 'beer-list'
         }),
         angular2_1.View({
-            template: "\n      <article class=\"card-panel\">\n      <h2>Beers </h2>\n        <div class=\"input-field col s6\">\n\n          <input type=\"text\" #search name=\"search\" />\n          <label for=\"icon_prefix\">Beer</label>\n          <i class=\"material-icons btn\" (click)=\"getBeers(search.value)\">search</i>\n          </div>\n\n      <p (click)=\"viewFavorites()\"> {{favorites.length}} Favorites</p>\n      <p>{{result.data.length}} Beers Found</p>\n          <ul class=\"collection\" >\n          <li class=\"collection-item avatar\" *ng-for=\"#item of result.data\" class=\"collection-item\">\n              <span class=\"title\">{{item.nameDisplay}}</span>\n              <p>{{item.description}}\n              </p>\n              <a (click)=\"saveBeer(item)\" class=\"secondary-content btn\"><i class=\"material-icons\">favorite</i></a>\n            </li>\n          </ul>\n      </article>\n    ",
+            template: "\n      <article class=\"card-panel result-panel\">\n        <div class=\"row\">\n            <div class=\"input-field col s12\">\n            <i class=\"material-icons prefix\" (click)=\"getBeers(search.value)\">search</i>\n            <input type=\"text\" #search name=\"search\" (keyup)=\"keyupGetBeers($event, search.value)\" />\n            <label for=\"icon_prefix\">Beer</label>\n            </div>\n        </div>\n      <p (click)=\"viewFavorites()\"> {{favorites.length}} Favorites</p>\n      <p>{{result.data.length}} Beers Found</p>\n          <ul class=\"collection\" >\n          <li class=\"collection-item avatar\" *ng-for=\"#item of result.data\" class=\"collection-item\">\n              <span class=\"title\">{{item.nameDisplay}}</span>\n              <p class=\"description\">{{item.description}}\n              </p>\n              <a (click)=\"saveBeer(item)\" class=\"secondary-content btn\"><i class=\"material-icons\">favorite</i></a>\n            </li>\n          </ul>\n      </article>\n    ",
             directives: [angular2_1.NgFor, tooltip_1.Tooltip]
         }), 
         __metadata('design:paramtypes', [http_1.Http])
@@ -44,4 +49,4 @@ var Beer = (function () {
     return Beer;
 })();
 exports.Beer = Beer;
-//# sourceMappingURL=Beer.js.map
+//# sourceMappingURL=beer-comp.js.map

@@ -1,6 +1,6 @@
 import {Component, View, NgFor} from 'angular2/angular2';
 import {Http} from 'angular2/http';
-import {MapCmp} from 'modules/states/Map';
+import {MapCmp} from 'modules/states/map-comp';
 
 
 @Component({
@@ -19,7 +19,7 @@ import {MapCmp} from 'modules/states/Map';
               </li>
           </ul>
       </article>
-      <map clas="card-panel" [data]="result"></map>
+      <map-view clas="card-panel" [data]="result"></map-view>
 
     `
 })
@@ -27,9 +27,16 @@ import {MapCmp} from 'modules/states/Map';
 export class State {
     result: Array<Object>;
     error: Object;
+
+
     constructor(http: Http) {
-        this.result = [{name:'hello'}];
-        http.get('/states').toRx().subscribe(res => this.result = res.json());
+        this.result = [];
+
+        http.get('/states').toRx().subscribe(res => {
+                this.result = res.json()
+            } );
     }
+
+
 
 }

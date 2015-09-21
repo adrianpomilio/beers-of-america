@@ -15,8 +15,8 @@ var http_1 = require('angular2/http');
 var router_1 = require('angular2/router');
 var router_2 = require('angular2/router');
 var Home_1 = require('modules/home/Home');
-var Beer_1 = require('modules/beer/Beer');
-var State_1 = require('modules/states/State');
+var beer_comp_1 = require('./modules/beer/beer-comp');
+var states_comp_1 = require('modules/states/states-comp');
 var App = (function () {
     function App(router, location) {
         this.router = router;
@@ -27,13 +27,13 @@ var App = (function () {
             selector: 'app'
         }),
         angular2_1.View({
-            template: "\n    <nav>\n        <div class=\"nav-wrapper\">\n            <a href=\"#\" class=\"brand-logo right\">Beers of America</a>\n            <ul id=\"nav-mobile\" class=\"left hide-on-med-and-down\">\n                    <li ><a [router-link]=\"['/home']\" class=\"link\">Home</a></li>\n                    <li ><a [router-link]=\"['/state']\" class=\"link\">States</a></li>\n                    <li ><a [router-link]=\"['/beer']\" class=\"link\">Beer</a></li>\n            </ul>\n        </div>\n    </nav>\n    <div class=\"container\">\n        <router-outlet ></router-outlet>\n    </div>\n\n  ",
-            directives: [State_1.State, Beer_1.Beer, Home_1.Home, router_2.RouterLink, router_2.RouterOutlet]
+            template: "\n    <nav>\n        <div class=\"nav-wrapper blue lighten-3\">\n            <a href=\"#\" class=\"brand-logo right\">Beers of America</a>\n            <ul id=\"nav-mobile\" class=\"left hide-on-med-and-down\">\n                    <li ><a [router-link]=\"['/home']\" class=\"link\">Home</a></li>\n                    <li ><a [router-link]=\"['/state']\" class=\"link\">States</a></li>\n                    <li ><a [router-link]=\"['/beer']\" class=\"link\">Beer</a></li>\n            </ul>\n        </div>\n    </nav>\n    <div class=\"container\">\n        <router-outlet ></router-outlet>\n    </div>\n\n  ",
+            directives: [states_comp_1.State, beer_comp_1.Beer, Home_1.Home, router_2.RouterLink, router_2.RouterOutlet]
         }),
         router_2.RouteConfig([
             { path: '/', component: Home_1.Home, as: 'home' },
-            { path: '/state', component: State_1.State, as: 'state' },
-            { path: '/beer', component: Beer_1.Beer, as: 'beer' }
+            { path: '/state', component: states_comp_1.State, as: 'state' },
+            { path: '/beer', component: beer_comp_1.Beer, as: 'beer' }
         ]), 
         __metadata('design:paramtypes', [router_2.Router, router_2.Location])
     ], App);

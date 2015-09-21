@@ -1,3 +1,24 @@
 *[hidden] { display: none; }
 
 .btn {cursor: pointer;}
+
+.result-panel {min-height: 500px;}
+
+.description {width:450px;}
+
+#usa-map {
+
+    height:450px;
+    width:450px;
+
+}
+
+.state{
+    stroke-width:2px;
+    stroke:#fff;
+    transform: scale(.3);
+}
+.state:hover {
+    fill:#efefef;
+
+ }

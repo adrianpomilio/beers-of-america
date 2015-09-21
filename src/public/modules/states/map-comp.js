@@ -12,19 +12,22 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var angular2_1 = require('angular2/angular2');
 var MapCmp = (function () {
     function MapCmp() {
-        this.data = [];
     }
-    ;
+    MapCmp.prototype.stateDetail = function (state) {
+        console.log(state);
+    };
     MapCmp = __decorate([
         angular2_1.Component({
-            selector: 'map',
+            selector: 'map-view',
             properties: ['data']
         }),
         angular2_1.View({
-            template: "\n    <div id=\"usa-map\" class=\"map-panel\">\n        {{data[0].name}}\n    </div>\n    "
+            directives: [angular2_1.NgFor],
+            template: "\n    <div class=\"card-panel map-panel\">\n        hello states {{data.length}}\n        <svg id=\"usa-map\">\n            <g *ng-for=\"#st of data\" class=\"state\">\n                <path [attr.d]=\"st.d\" (click)=\"stateDetail(st)\"></path>\n            </g>\n        </svg>\n    </div>\n    "
         }), 
         __metadata('design:paramtypes', [])
     ], MapCmp);
     return MapCmp;
 })();
 exports.MapCmp = MapCmp;
+//# sourceMappingURL=map-comp.js.map

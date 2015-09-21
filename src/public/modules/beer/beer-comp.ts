@@ -9,21 +9,20 @@ import {Tooltip} from '../directives/tooltip';
 
 @View({
     template: `
-      <article class="card-panel">
-      <h2>Beers </h2>
-        <div class="input-field col s6">
-
-          <input type="text" #search name="search" />
-          <label for="icon_prefix">Beer</label>
-          <i class="material-icons btn" (click)="getBeers(search.value)">search</i>
-          </div>
-
+      <article class="card-panel result-panel">
+        <div class="row">
+            <div class="input-field col s12">
+            <i class="material-icons prefix" (click)="getBeers(search.value)">search</i>
+            <input type="text" #search name="search" (keyup)="keyupGetBeers($event, search.value)" />
+            <label for="icon_prefix">Beer</label>
+            </div>
+        </div>
       <p (click)="viewFavorites()"> {{favorites.length}} Favorites</p>
       <p>{{result.data.length}} Beers Found</p>
           <ul class="collection" >
           <li class="collection-item avatar" *ng-for="#item of result.data" class="collection-item">
               <span class="title">{{item.nameDisplay}}</span>
-              <p>{{item.description}}
+              <p class="description">{{item.description}}
               </p>
               <a (click)="saveBeer(item)" class="secondary-content btn"><i class="material-icons">favorite</i></a>
             </li>
@@ -32,7 +31,6 @@ import {Tooltip} from '../directives/tooltip';
     `,
     directives: [NgFor, Tooltip]
 })
-
 export class Beer {
     result: Object;
     error: Object;
@@ -52,7 +50,15 @@ export class Beer {
             this.result = res.json()
             }
         );
-    };
+    }
+
+    keyupGetBeers(event:any, search:string){
+        /* a place where typing can frustrate see ANY */
+        if(event.keyCode == 13){
+            this.getBeers(search);
+        }
+
+    }
 
     saveBeer(obj:Object){
         this.favorites.push(obj);
@@ -61,6 +67,8 @@ export class Beer {
     viewFavorites(){
         console.log(this.favorites);
     }
+
+
 
 
 }
