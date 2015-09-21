@@ -11,22 +11,32 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var angular2_1 = require('angular2/angular2');
 var http_1 = require('angular2/http');
+var tooltip_1 = require('../directives/tooltip');
 var Beer = (function () {
     function Beer(http) {
-        var _this = this;
         this.result = { data: [] };
-        http.get('/beers/IPA').toRx().subscribe(function (res) { return _this.result = res.json(); });
+        this.http = http;
     }
+    Beer.prototype.getBeers = function (search) {
+        var _this = this;
+        console.log(search);
+        this.http.get('/beers/' + search).toRx().subscribe(function (res) {
+            console.log(res);
+            _this.result = res.json();
+        });
+    };
+    ;
     Beer = __decorate([
         angular2_1.Component({
             selector: 'beer-list'
         }),
         angular2_1.View({
-            template: "\n      <article class=\"card-panel\">\n      <h2>Beers <span class=\"new badge\">{{result.data.length}}</span></h2>\n        <div class=\"progress\">\n            <div class=\"indeterminate\"></div>\n        </div>\n          <ul class=\"collection\" >\n              <li *ng-for=\"#item of result.data\" class=\"collection-item\">\n                  {{item.nameDisplay}}\n              </li>\n          </ul>\n      </article>\n    ",
-            directives: [angular2_1.NgFor]
+            template: "\n      <article class=\"card-panel\">\n      <h2>Beers <span class=\"new badge\">{{result.data.length}}</span></h2>\n      <label>Get Some Beer:</label>\n      <input type=\"text\" #search name=\"search\" />\n      <button (click)=\"getBeers(search.value)\">go</button>\n          <ul class=\"collection\" >\n              <li *ng-for=\"#item of result.data\" class=\"collection-item\" [tooltip]=\"item.nameDisplay\">\n                  {{item.nameDisplay}}\n              </li>\n          </ul>\n      </article>\n    ",
+            directives: [angular2_1.NgFor, tooltip_1.Tooltip]
         }), 
         __metadata('design:paramtypes', [http_1.Http])
     ], Beer);
     return Beer;
 })();
 exports.Beer = Beer;
+//# sourceMappingURL=Beer.js.map

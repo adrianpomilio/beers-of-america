@@ -1,4 +1,4 @@
-/// <reference path="typings/tsd.d.ts" />
+/// <reference path="typings/angular2/angular2.d.ts" />
 import {Component, View, bootstrap, bind} from 'angular2/angular2';
 import {HTTP_BINDINGS} from 'angular2/http';
 import {ROUTER_BINDINGS, LocationStrategy, HashLocationStrategy} from 'angular2/router';

@@ -12,6 +12,17 @@ var views = [
 			}
 		}
 	},
+    {
+        method: 'GET',
+        path: '/favicon.ico',
+        handler: { file: './favicon.ico' },
+        config: {
+            cache: {
+                expiresIn: 86400000,
+                privacy: 'public'
+            }
+        }
+    },
 ];
 
 module.exports = [].concat(views, states, beers);
