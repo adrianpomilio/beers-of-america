@@ -18,11 +18,10 @@ import {Tooltip} from '../directives/tooltip';
           <i class="material-icons btn" (click)="getBeers(search.value)">search</i>
           </div>
 
-      <p>{{favorites.length}} Favorites</p>
+      <p (click)="viewFavorites()"> {{favorites.length}} Favorites</p>
       <p>{{result.data.length}} Beers Found</p>
           <ul class="collection" >
           <li class="collection-item avatar" *ng-for="#item of result.data" class="collection-item">
-              <img src="{{item.icon}}" alt="" class="circle">
               <span class="title">{{item.nameDisplay}}</span>
               <p>{{item.description}}
               </p>
@@ -49,9 +48,7 @@ export class Beer {
     }
 
     getBeers(search:string){
-        console.log(search);
         this.http.get('/beers/'+search).toRx().subscribe(res => {
-            console.log(res);
             this.result = res.json()
             }
         );
@@ -59,6 +56,10 @@ export class Beer {
 
     saveBeer(obj:Object){
         this.favorites.push(obj);
+    }
+
+    viewFavorites(){
+        console.log(this.favorites);
     }
 
 
