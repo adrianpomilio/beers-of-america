@@ -1,13 +1,14 @@
 /// <reference path="typings/angular2/angular2.d.ts" />
-import {Component, View, bootstrap, bind} from 'angular2/angular2';
+import {Component, View, bootstrap, bind, ElementRef} from 'angular2/angular2';
 import {HTTP_BINDINGS} from 'angular2/http';
 import {ROUTER_BINDINGS, LocationStrategy, HashLocationStrategy} from 'angular2/router';
 import {RouterLink, RouteConfig, Router, RouterOutlet, Location, RouteParams} from 'angular2/router';
 
-import {Home} from 'modules/home/Home';
+import {Home} from './modules/home/Home';
 import {Beer} from './modules/beer/beer-comp';
 import {StateCmp} from 'modules/states/states-comp';
 import {MapCmp} from './modules/states/map-comp';
+import {BeerSvc} from './modules/services/beer-svc';
 
 @Component({
   selector: 'app'
@@ -28,7 +29,7 @@ import {MapCmp} from './modules/states/map-comp';
         <router-outlet ></router-outlet>
     </div>
   `,
-   directives: [StateCmp, Beer, Home, RouterLink, RouterOutlet]
+   directives: [RouterLink, RouterOutlet, StateCmp, Beer, Home, ]
 })
 
 @RouteConfig([
@@ -41,15 +42,21 @@ class App {
     router: Router;
     location: Location;
 
+
   constructor(router: Router, location: Location) {
     this.router = router;
     this.location = location;
+
+
   }
 }
 
 
 
-bootstrap(App, [HTTP_BINDINGS, ROUTER_BINDINGS, bind(LocationStrategy).toClass(HashLocationStrategy), MapCmp])
+bootstrap(App, [HTTP_BINDINGS, ROUTER_BINDINGS,
+        bind(LocationStrategy).toClass(HashLocationStrategy),
+        MapCmp,
+        BeerSvc])
     .then(
         success => console.log(success),
         error => console.log(error)

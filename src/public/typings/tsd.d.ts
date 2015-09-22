@@ -5,3 +5,4 @@
 /// <reference path="rx/rx.d.ts" />
 /// <reference path="angular2/router.d.ts" />
 /// <reference path="angular2/http.d.ts" />
+/// <reference path="jquery/jquery.d.ts" />

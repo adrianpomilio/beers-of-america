@@ -12,17 +12,20 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var angular2_1 = require('angular2/angular2');
 var http_1 = require('angular2/http');
 var tooltip_1 = require('../directives/tooltip');
+var beer_svc_1 = require('../services/beer-svc');
 var Beer = (function () {
-    function Beer(http) {
+    function Beer(http, beerSvc) {
         this.result = { data: [] };
         this.favorites = [];
         this.http = http;
+        this.beerSvc = beerSvc;
     }
     Beer.prototype.getBeers = function (search) {
         var _this = this;
         this.http.get('/beers/' + search).toRx().subscribe(function (res) {
             _this.result = res.json();
         });
+        /*this.beerSvc.getBeers(search);*/
     };
     Beer.prototype.keyupGetBeers = function (event, search) {
         /* a place where typing can frustrate see ANY */
@@ -44,7 +47,7 @@ var Beer = (function () {
             template: "\n      <article class=\"card-panel result-panel\">\n        <div class=\"row\">\n            <div class=\"input-field col s12\">\n            <i class=\"material-icons prefix\" (click)=\"getBeers(search.value)\">search</i>\n            <input type=\"text\" #search name=\"search\" (keyup)=\"keyupGetBeers($event, search.value)\" />\n            <label for=\"icon_prefix\">Beer</label>\n            </div>\n        </div>\n      <p (click)=\"viewFavorites()\"> {{favorites.length}} Favorites</p>\n      <p>{{result.data.length}} Beers Found</p>\n          <ul class=\"collection\" >\n          <li class=\"collection-item avatar\" *ng-for=\"#item of result.data\" class=\"collection-item\">\n              <span class=\"title\">{{item.nameDisplay}}</span>\n              <p class=\"description\">{{item.description}}\n              </p>\n              <a (click)=\"saveBeer(item)\" class=\"secondary-content btn\"><i class=\"material-icons\">favorite</i></a>\n            </li>\n          </ul>\n      </article>\n    ",
             directives: [angular2_1.NgFor, tooltip_1.Tooltip]
         }), 
-        __metadata('design:paramtypes', [http_1.Http])
+        __metadata('design:paramtypes', [http_1.Http, beer_svc_1.BeerSvc])
     ], Beer);
     return Beer;
 })();

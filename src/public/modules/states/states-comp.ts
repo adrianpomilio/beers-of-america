@@ -1,4 +1,4 @@
-import {Component, View, NgFor} from 'angular2/angular2';
+import {Component, View, NgFor, ElementRef} from 'angular2/angular2';
 import {Http} from 'angular2/http';
 import {MapCmp} from 'modules/states/map-comp';
 import {State} from 'modules/states/State';
@@ -24,7 +24,7 @@ import {State} from 'modules/states/State';
                 </div>
             </div>
             <div class="col s9">
-                <map-view  [data]="result"></map-view>
+                <map-view  [data]="result" [selected-state]="selectedstate"></map-view>
             </div>
         </div>
     </article>
@@ -39,6 +39,7 @@ export class StateCmp {
     State:State;
 
 
+
     constructor(http: Http, mapCmp:MapCmp) {
         this.result = [];
         this.selectedstate = {};
@@ -51,7 +52,7 @@ export class StateCmp {
     }
 
     showState(state:Object){
-        this.mapper.stateDetail(state);
+        this.selectedstate = state;
     }
 
 

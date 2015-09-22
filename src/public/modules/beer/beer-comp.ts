@@ -1,6 +1,7 @@
 import {Component, View, NgFor} from 'angular2/angular2';
 import {Http} from 'angular2/http';
 import {Tooltip} from '../directives/tooltip';
+import {BeerSvc} from'../services/beer-svc';
 
 
 @Component({
@@ -36,12 +37,14 @@ export class Beer {
     error: Object;
     http:Http;
     favorites:Array<Object>;
+    beerSvc:BeerSvc;
 
 
-    constructor(http: Http) {
+    constructor(http: Http, beerSvc:BeerSvc) {
         this.result = {data:[]};
         this.favorites = [];
         this.http = http;
+        this.beerSvc = beerSvc;
 
     }
 
@@ -50,6 +53,7 @@ export class Beer {
             this.result = res.json()
             }
         );
+        /*this.beerSvc.getBeers(search);*/
     }
 
     keyupGetBeers(event:any, search:string){

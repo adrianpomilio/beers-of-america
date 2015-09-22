@@ -14,10 +14,11 @@ var angular2_1 = require('angular2/angular2');
 var http_1 = require('angular2/http');
 var router_1 = require('angular2/router');
 var router_2 = require('angular2/router');
-var Home_1 = require('modules/home/Home');
+var Home_1 = require('./modules/home/Home');
 var beer_comp_1 = require('./modules/beer/beer-comp');
 var states_comp_1 = require('modules/states/states-comp');
 var map_comp_1 = require('./modules/states/map-comp');
+var beer_svc_1 = require('./modules/services/beer-svc');
 var App = (function () {
     function App(router, location) {
         this.router = router;
@@ -29,7 +30,7 @@ var App = (function () {
         }),
         angular2_1.View({
             template: "\n    <nav>\n        <div class=\"nav-wrapper blue lighten-3\">\n            <a href=\"#\" class=\"brand-logo right\">Beers of America</a>\n            <ul id=\"nav-mobile\" class=\"left hide-on-med-and-down\">\n                    <li ><a [router-link]=\"['/home']\" class=\"link\">Home</a></li>\n                    <li ><a [router-link]=\"['/state']\" class=\"link\">States</a></li>\n                    <li ><a [router-link]=\"['/beer']\" class=\"link\">Beer</a></li>\n            </ul>\n        </div>\n    </nav>\n    <div class=\"container top-container\">\n        <router-outlet ></router-outlet>\n    </div>\n  ",
-            directives: [states_comp_1.StateCmp, beer_comp_1.Beer, Home_1.Home, router_2.RouterLink, router_2.RouterOutlet]
+            directives: [router_2.RouterLink, router_2.RouterOutlet, states_comp_1.StateCmp, beer_comp_1.Beer, Home_1.Home,]
         }),
         router_2.RouteConfig([
             { path: '/', component: Home_1.Home, as: 'home' },
@@ -40,6 +41,9 @@ var App = (function () {
     ], App);
     return App;
 })();
-angular2_1.bootstrap(App, [http_1.HTTP_BINDINGS, router_1.ROUTER_BINDINGS, angular2_1.bind(router_1.LocationStrategy).toClass(router_1.HashLocationStrategy), map_comp_1.MapCmp])
+angular2_1.bootstrap(App, [http_1.HTTP_BINDINGS, router_1.ROUTER_BINDINGS,
+    angular2_1.bind(router_1.LocationStrategy).toClass(router_1.HashLocationStrategy),
+    map_comp_1.MapCmp,
+    beer_svc_1.BeerSvc])
     .then(function (success) { return console.log(success); }, function (error) { return console.log(error); });
 //# sourceMappingURL=main.js.map
