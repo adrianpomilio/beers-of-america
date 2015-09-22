@@ -15,7 +15,7 @@ import {Component, View, NgFor, ElementRef} from 'angular2/angular2';
     <h3>{{selectedState.name}}</h3>
         <svg id="usa-map">
             <g *ng-for="#st of data" class="state" id="{{st.abbr}}">
-                <path [attr.d]="st.d" (click)="stateDetail(st)"></path>
+                <path [attr.d]="st.d" (mouseover)="stateDetail(st)"></path>
             </g>
         </svg>
 
@@ -28,10 +28,12 @@ export class MapCmp{
     selectedState: Object;
 
     constructor(){
+
     }
 
     onInit(){
         this.selectedState = {name:'Select a State'};
+
     }
 
     stateDetail(state:Object){

@@ -9,6 +9,7 @@ import {Beer} from './modules/beer/beer-comp';
 import {StateCmp} from 'modules/states/states-comp';
 import {MapCmp} from './modules/states/map-comp';
 import {BeerSvc} from './modules/services/beer-svc';
+import {PipeCmp} from './modules/pipes/pipes-comp';
 
 @Component({
   selector: 'app'
@@ -22,6 +23,7 @@ import {BeerSvc} from './modules/services/beer-svc';
                     <li ><a [router-link]="['/home']" class="link">Home</a></li>
                     <li ><a [router-link]="['/state']" class="link">States</a></li>
                     <li ><a [router-link]="['/beer']" class="link">Beer</a></li>
+                    <li ><a [router-link]="['/pipe']" class="link">Pipe</a></li>
             </ul>
         </div>
     </nav>
@@ -35,7 +37,8 @@ import {BeerSvc} from './modules/services/beer-svc';
 @RouteConfig([
     {path: '/', component: Home, as: 'home'},
     {path: '/state', component: StateCmp, as: 'state'},
-    {path: '/beer', component: Beer, as: 'beer'}
+    {path: '/beer', component: Beer, as: 'beer'},
+    {path: '/pipe', component: PipeCmp, as: 'pipe'}
 ])
 
 class App {

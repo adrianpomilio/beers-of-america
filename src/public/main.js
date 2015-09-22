@@ -19,6 +19,7 @@ var beer_comp_1 = require('./modules/beer/beer-comp');
 var states_comp_1 = require('modules/states/states-comp');
 var map_comp_1 = require('./modules/states/map-comp');
 var beer_svc_1 = require('./modules/services/beer-svc');
+var pipes_comp_1 = require('./modules/pipes/pipes-comp');
 var App = (function () {
     function App(router, location) {
         this.router = router;
@@ -29,13 +30,14 @@ var App = (function () {
             selector: 'app'
         }),
         angular2_1.View({
-            template: "\n    <nav>\n        <div class=\"nav-wrapper blue lighten-3\">\n            <a href=\"#\" class=\"brand-logo right\">Beers of America</a>\n            <ul id=\"nav-mobile\" class=\"left hide-on-med-and-down\">\n                    <li ><a [router-link]=\"['/home']\" class=\"link\">Home</a></li>\n                    <li ><a [router-link]=\"['/state']\" class=\"link\">States</a></li>\n                    <li ><a [router-link]=\"['/beer']\" class=\"link\">Beer</a></li>\n            </ul>\n        </div>\n    </nav>\n    <div class=\"container top-container\">\n        <router-outlet ></router-outlet>\n    </div>\n  ",
+            template: "\n    <nav>\n        <div class=\"nav-wrapper blue lighten-3\">\n            <a href=\"#\" class=\"brand-logo right\">Beers of America</a>\n            <ul id=\"nav-mobile\" class=\"left hide-on-med-and-down\">\n                    <li ><a [router-link]=\"['/home']\" class=\"link\">Home</a></li>\n                    <li ><a [router-link]=\"['/state']\" class=\"link\">States</a></li>\n                    <li ><a [router-link]=\"['/beer']\" class=\"link\">Beer</a></li>\n                    <li ><a [router-link]=\"['/pipe']\" class=\"link\">Pipe</a></li>\n            </ul>\n        </div>\n    </nav>\n    <div class=\"container top-container\">\n        <router-outlet ></router-outlet>\n    </div>\n  ",
             directives: [router_2.RouterLink, router_2.RouterOutlet, states_comp_1.StateCmp, beer_comp_1.Beer, Home_1.Home,]
         }),
         router_2.RouteConfig([
             { path: '/', component: Home_1.Home, as: 'home' },
             { path: '/state', component: states_comp_1.StateCmp, as: 'state' },
-            { path: '/beer', component: beer_comp_1.Beer, as: 'beer' }
+            { path: '/beer', component: beer_comp_1.Beer, as: 'beer' },
+            { path: '/pipe', component: pipes_comp_1.PipeCmp, as: 'pipe' }
         ]), 
         __metadata('design:paramtypes', [router_2.Router, router_2.Location])
     ], App);

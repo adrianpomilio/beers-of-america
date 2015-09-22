@@ -10,29 +10,23 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var angular2_1 = require('angular2/angular2');
-var MapCmp = (function () {
-    function MapCmp() {
+var PipeCmp = (function () {
+    function PipeCmp() {
+        this.message1 = 'Pipe Dreams 1';
+        this.message2 = Date.now();
+        this.message3 = ['I', 'love', 'to', 'use', 'p', 'tags', 'and', 'div', 'tags', 'because', 'my', 'friend', 'Steven', 'hates', 'that', 'crap', ',and somewhere Baby Chris is laughing!'];
     }
-    MapCmp.prototype.onInit = function () {
-        this.selectedState = { name: 'Select a State' };
-    };
-    MapCmp.prototype.stateDetail = function (state) {
-        this.selectedState = state;
-    };
-    MapCmp = __decorate([
+    PipeCmp = __decorate([
         angular2_1.Component({
-            selector: 'map-view',
-            properties: [
-                'data',
-                'selectedState']
+            selector: 'pipe-dreams'
         }),
         angular2_1.View({
             directives: [angular2_1.NgFor],
-            template: "\n    <div class=\"card-panel map-panel\">\n    <h3>{{selectedState.name}}</h3>\n        <svg id=\"usa-map\">\n            <g *ng-for=\"#st of data\" class=\"state\" id=\"{{st.abbr}}\">\n                <path [attr.d]=\"st.d\" (mouseover)=\"stateDetail(st)\"></path>\n            </g>\n        </svg>\n\n    </div>\n    "
+            template: "\n        <div class=\"card-panel\">\n        <h3>Pipes</h3>\n        <p>{{ message1 | uppercase }} - uppercase pipe</p>\n        <p>This is Date.now(): {{ message2 }} but check this out {{ message2 | date: 'shortTime' }}</p>\n        <p><i *ng-for=\"#item of message3\">{{item}} </i></p>\n        <p *ng-for=\"#item of message3 | limitTo: 6\">{{item}}</p>\n\n        </div>\n    "
         }), 
         __metadata('design:paramtypes', [])
-    ], MapCmp);
-    return MapCmp;
+    ], PipeCmp);
+    return PipeCmp;
 })();
-exports.MapCmp = MapCmp;
-//# sourceMappingURL=map-comp.js.map
+exports.PipeCmp = PipeCmp;
+//# sourceMappingURL=pipes-comp.js.map
