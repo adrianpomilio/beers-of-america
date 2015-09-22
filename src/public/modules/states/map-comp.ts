@@ -1,8 +1,8 @@
-import {Component, View, NgFor} from 'angular2/angular2';
+import {Component, View, NgFor, NgZone} from 'angular2/angular2';
 
 @Component({
     selector: 'map-view',
-    properties: ['data','selectedstate']
+    properties: ['data']
 })
 
 @View({
@@ -21,13 +21,15 @@ import {Component, View, NgFor} from 'angular2/angular2';
     })
 
 export class MapCmp{
-    selectedstate : Object;
+    selectedstate: Object;
+    zone:NgZone;
+
     constructor(){
         this.selectedstate = {};
+
     }
 
     stateDetail(state:Object){
-        console.log(state);
         this.selectedstate = state;
         console.log(this.selectedstate)
 

@@ -15,14 +15,13 @@ var MapCmp = (function () {
         this.selectedstate = {};
     }
     MapCmp.prototype.stateDetail = function (state) {
-        console.log(state);
         this.selectedstate = state;
         console.log(this.selectedstate);
     };
     MapCmp = __decorate([
         angular2_1.Component({
             selector: 'map-view',
-            properties: ['data', 'selectedstate']
+            properties: ['data']
         }),
         angular2_1.View({
             directives: [angular2_1.NgFor],

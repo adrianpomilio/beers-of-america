@@ -1,12 +1,11 @@
 import {Component, View, NgFor} from 'angular2/angular2';
 import {Http} from 'angular2/http';
 import {MapCmp} from 'modules/states/map-comp';
+import {State} from 'modules/states/State';
 
 
 @Component({
-    selector: 'state-list',
-    bindings: [MapCmp]
-
+    selector: 'state-list'
 })
 
 @View({
@@ -32,11 +31,12 @@ import {MapCmp} from 'modules/states/map-comp';
     `
 })
 
-export class State {
+export class StateCmp {
     result: Array<Object>;
     error: Object;
     selectedstate:Object;
     mapper:MapCmp;
+    State:State;
 
 
     constructor(http: Http, mapCmp:MapCmp) {
@@ -46,6 +46,7 @@ export class State {
 
         http.get('/states').toRx().subscribe(res => {
                 this.result = res.json()
+
             } );
     }
 

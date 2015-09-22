@@ -6,7 +6,8 @@ import {RouterLink, RouteConfig, Router, RouterOutlet, Location, RouteParams} fr
 
 import {Home} from 'modules/home/Home';
 import {Beer} from './modules/beer/beer-comp';
-import {State} from 'modules/states/states-comp';
+import {StateCmp} from 'modules/states/states-comp';
+import {MapCmp} from './modules/states/map-comp';
 
 @Component({
   selector: 'app'
@@ -27,12 +28,12 @@ import {State} from 'modules/states/states-comp';
         <router-outlet ></router-outlet>
     </div>
   `,
-   directives: [State, Beer, Home, RouterLink, RouterOutlet]
+   directives: [StateCmp, Beer, Home, RouterLink, RouterOutlet]
 })
 
 @RouteConfig([
     {path: '/', component: Home, as: 'home'},
-    {path: '/state', component: State, as: 'state'},
+    {path: '/state', component: StateCmp, as: 'state'},
     {path: '/beer', component: Beer, as: 'beer'}
 ])
 
@@ -48,7 +49,7 @@ class App {
 
 
 
-bootstrap(App, [HTTP_BINDINGS, ROUTER_BINDINGS, bind(LocationStrategy).toClass(HashLocationStrategy)])
+bootstrap(App, [HTTP_BINDINGS, ROUTER_BINDINGS, bind(LocationStrategy).toClass(HashLocationStrategy), MapCmp])
     .then(
         success => console.log(success),
         error => console.log(error)
