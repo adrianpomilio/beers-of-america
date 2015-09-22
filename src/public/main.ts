@@ -23,10 +23,9 @@ import {State} from 'modules/states/states-comp';
             </ul>
         </div>
     </nav>
-    <div class="container">
+    <div class="container top-container">
         <router-outlet ></router-outlet>
     </div>
-
   `,
    directives: [State, Beer, Home, RouterLink, RouterOutlet]
 })
@@ -49,4 +48,8 @@ class App {
 
 
 
-bootstrap(App, [HTTP_BINDINGS, ROUTER_BINDINGS, bind(LocationStrategy).toClass(HashLocationStrategy)]);
+bootstrap(App, [HTTP_BINDINGS, ROUTER_BINDINGS, bind(LocationStrategy).toClass(HashLocationStrategy)])
+    .then(
+        success => console.log(success),
+        error => console.log(error)
+        );

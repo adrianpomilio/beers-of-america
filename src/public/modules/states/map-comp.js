@@ -12,18 +12,21 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var angular2_1 = require('angular2/angular2');
 var MapCmp = (function () {
     function MapCmp() {
+        this.selectedstate = {};
     }
     MapCmp.prototype.stateDetail = function (state) {
         console.log(state);
+        this.selectedstate = state;
+        console.log(this.selectedstate);
     };
     MapCmp = __decorate([
         angular2_1.Component({
             selector: 'map-view',
-            properties: ['data']
+            properties: ['data', 'selectedstate']
         }),
         angular2_1.View({
             directives: [angular2_1.NgFor],
-            template: "\n    <div class=\"card-panel map-panel\">\n        hello states {{data.length}}\n        <svg id=\"usa-map\">\n            <g *ng-for=\"#st of data\" class=\"state\">\n                <path [attr.d]=\"st.d\" (click)=\"stateDetail(st)\"></path>\n            </g>\n        </svg>\n    </div>\n    "
+            template: "\n    <div class=\"card-panel map-panel\">\n        <svg id=\"usa-map\">\n            <g *ng-for=\"#st of data\" class=\"state\">\n                <path [attr.d]=\"st.d\" (click)=\"stateDetail(st)\"></path>\n            </g>\n        </svg>\n        <p>{{selectedstate.name}}</p>\n\n    </div>\n    "
         }), 
         __metadata('design:paramtypes', [])
     ], MapCmp);

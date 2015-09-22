@@ -7,18 +7,26 @@
 .description {width:450px;}
 
 #usa-map {
-
     height:450px;
     width:450px;
+}
+.states-collection {
+    height:500px;
+    overflow:auto;
 
 }
 
 .state{
     stroke-width:2px;
     stroke:#fff;
+    fill:#78909c;
     transform: scale(.3);
 }
 .state:hover {
-    fill:#efefef;
-
+    fill:#b0bec5;
  }
+
+ .collection-item {cursor:pointer;}
+.collection .collection-item:hover {background-color:#90caf9;}
+
+/*body {background-image: url(../assets/ml_main-beer-pic.jpg)}*/

@@ -13,22 +13,28 @@ var angular2_1 = require('angular2/angular2');
 var http_1 = require('angular2/http');
 var map_comp_1 = require('modules/states/map-comp');
 var State = (function () {
-    function State(http) {
+    function State(http, mapCmp) {
         var _this = this;
         this.result = [];
+        this.selectedstate = {};
+        this.mapper = mapCmp;
         http.get('/states').toRx().subscribe(function (res) {
             _this.result = res.json();
         });
     }
+    State.prototype.showState = function (state) {
+        this.mapper.stateDetail(state);
+    };
     State = __decorate([
         angular2_1.Component({
-            selector: 'state-list'
+            selector: 'state-list',
+            bindings: [map_comp_1.MapCmp]
         }),
         angular2_1.View({
             directives: [angular2_1.NgFor, map_comp_1.MapCmp],
-            template: "\n    <article class=\"card-panel\" >\n        <h2>States</h2>\n            <ul class=\"collection\">\n              <li *ng-for=\"#item of result\" id=\"state-{{item.abbr}}\" class=\"collection-item\" >\n                  {{item.name}}\n              </li>\n          </ul>\n      </article>\n      <map-view clas=\"card-panel\" [data]=\"result\"></map-view>\n\n    "
+            template: "\n    <article class=\"card-panel\" >\n        <h2>States</h2>\n        <div class=\"row\">\n            <div class=\"col s3\">\n                <div class=\"card-panel states-collection\">\n                    <ul class=\"collection \">\n                        <li *ng-for=\"#item of result\" class=\"collection-item\" (click)=\"showState(item)\" >\n                              {{item.name}}\n                        </li>\n                    </ul>\n                </div>\n            </div>\n            <div class=\"col s9\">\n                <map-view  [data]=\"result\"></map-view>\n            </div>\n        </div>\n    </article>\n    "
         }), 
-        __metadata('design:paramtypes', [http_1.Http])
+        __metadata('design:paramtypes', [http_1.Http, map_comp_1.MapCmp])
     ], State);
     return State;
 })();

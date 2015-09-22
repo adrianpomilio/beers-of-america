@@ -4,7 +4,8 @@ import {MapCmp} from 'modules/states/map-comp';
 
 
 @Component({
-    selector: 'state-list'
+    selector: 'state-list',
+    bindings: [MapCmp]
 
 })
 
@@ -13,28 +14,43 @@ import {MapCmp} from 'modules/states/map-comp';
     template: `
     <article class="card-panel" >
         <h2>States</h2>
-            <ul class="collection">
-              <li *ng-for="#item of result" id="state-{{item.abbr}}" class="collection-item" >
-                  {{item.name}}
-              </li>
-          </ul>
-      </article>
-      <map-view clas="card-panel" [data]="result"></map-view>
-
+        <div class="row">
+            <div class="col s3">
+                <div class="card-panel states-collection">
+                    <ul class="collection ">
+                        <li *ng-for="#item of result" class="collection-item" (click)="showState(item)" >
+                              {{item.name}}
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col s9">
+                <map-view  [data]="result"></map-view>
+            </div>
+        </div>
+    </article>
     `
 })
 
 export class State {
     result: Array<Object>;
     error: Object;
+    selectedstate:Object;
+    mapper:MapCmp;
 
 
-    constructor(http: Http) {
+    constructor(http: Http, mapCmp:MapCmp) {
         this.result = [];
+        this.selectedstate = {};
+        this.mapper = mapCmp;
 
         http.get('/states').toRx().subscribe(res => {
                 this.result = res.json()
             } );
+    }
+
+    showState(state:Object){
+        this.mapper.stateDetail(state);
     }
 
 

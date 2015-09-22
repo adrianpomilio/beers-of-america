@@ -27,7 +27,7 @@ var App = (function () {
             selector: 'app'
         }),
         angular2_1.View({
-            template: "\n    <nav>\n        <div class=\"nav-wrapper blue lighten-3\">\n            <a href=\"#\" class=\"brand-logo right\">Beers of America</a>\n            <ul id=\"nav-mobile\" class=\"left hide-on-med-and-down\">\n                    <li ><a [router-link]=\"['/home']\" class=\"link\">Home</a></li>\n                    <li ><a [router-link]=\"['/state']\" class=\"link\">States</a></li>\n                    <li ><a [router-link]=\"['/beer']\" class=\"link\">Beer</a></li>\n            </ul>\n        </div>\n    </nav>\n    <div class=\"container\">\n        <router-outlet ></router-outlet>\n    </div>\n\n  ",
+            template: "\n    <nav>\n        <div class=\"nav-wrapper blue lighten-3\">\n            <a href=\"#\" class=\"brand-logo right\">Beers of America</a>\n            <ul id=\"nav-mobile\" class=\"left hide-on-med-and-down\">\n                    <li ><a [router-link]=\"['/home']\" class=\"link\">Home</a></li>\n                    <li ><a [router-link]=\"['/state']\" class=\"link\">States</a></li>\n                    <li ><a [router-link]=\"['/beer']\" class=\"link\">Beer</a></li>\n            </ul>\n        </div>\n    </nav>\n    <div class=\"container top-container\">\n        <router-outlet ></router-outlet>\n    </div>\n  ",
             directives: [states_comp_1.State, beer_comp_1.Beer, Home_1.Home, router_2.RouterLink, router_2.RouterOutlet]
         }),
         router_2.RouteConfig([
@@ -39,5 +39,6 @@ var App = (function () {
     ], App);
     return App;
 })();
-angular2_1.bootstrap(App, [http_1.HTTP_BINDINGS, router_1.ROUTER_BINDINGS, angular2_1.bind(router_1.LocationStrategy).toClass(router_1.HashLocationStrategy)]);
+angular2_1.bootstrap(App, [http_1.HTTP_BINDINGS, router_1.ROUTER_BINDINGS, angular2_1.bind(router_1.LocationStrategy).toClass(router_1.HashLocationStrategy)])
+    .then(function (success) { return console.log(success); }, function (error) { return console.log(error); });
 //# sourceMappingURL=main.js.map
