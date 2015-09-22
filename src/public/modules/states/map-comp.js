@@ -14,7 +14,7 @@ var MapCmp = (function () {
     function MapCmp() {
     }
     MapCmp.prototype.onInit = function () {
-        this.selectedState = {};
+        this.selectedState = { name: 'Select a State' };
     };
     MapCmp.prototype.stateDetail = function (state) {
         this.selectedState = state;
@@ -28,7 +28,7 @@ var MapCmp = (function () {
         }),
         angular2_1.View({
             directives: [angular2_1.NgFor],
-            template: "\n    <div class=\"card-panel map-panel\">\n        <svg id=\"usa-map\">\n            <g *ng-for=\"#st of data\" class=\"state\" id=\"{{st.abbr}}\">\n                <path [attr.d]=\"st.d\" (click)=\"stateDetail(st)\"></path>\n            </g>\n        </svg>\n        <p>{{selectedState.name}}</p>\n\n    </div>\n    "
+            template: "\n    <div class=\"card-panel map-panel\">\n    <h3>{{selectedState.name}}</h3>\n        <svg id=\"usa-map\">\n            <g *ng-for=\"#st of data\" class=\"state\" id=\"{{st.abbr}}\">\n                <path [attr.d]=\"st.d\" (click)=\"stateDetail(st)\"></path>\n            </g>\n        </svg>\n\n    </div>\n    "
         }), 
         __metadata('design:paramtypes', [])
     ], MapCmp);

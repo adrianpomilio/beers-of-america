@@ -12,12 +12,12 @@ import {Component, View, NgFor, ElementRef} from 'angular2/angular2';
     directives:[NgFor],
     template:`
     <div class="card-panel map-panel">
+    <h3>{{selectedState.name}}</h3>
         <svg id="usa-map">
             <g *ng-for="#st of data" class="state" id="{{st.abbr}}">
                 <path [attr.d]="st.d" (click)="stateDetail(st)"></path>
             </g>
         </svg>
-        <p>{{selectedState.name}}</p>
 
     </div>
     `
@@ -25,18 +25,16 @@ import {Component, View, NgFor, ElementRef} from 'angular2/angular2';
 
 
 export class MapCmp{
-    selectedState: any;
-    selectedStateShape:any;
-
+    selectedState: Object;
 
     constructor(){
     }
 
     onInit(){
-        this.selectedState = {};
+        this.selectedState = {name:'Select a State'};
     }
 
-    stateDetail(state:any){
+    stateDetail(state:Object){
         this.selectedState = state;
 
     }
