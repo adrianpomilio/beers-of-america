@@ -1,3 +1,13 @@
-var apiKeys = require('../../keys.json');
-var beer = req.param("name");
-var url = apiKeys.brewery.url + 'search?q='+beer+'&type=beer&key='+apiKeys.brewery.apiKey;
+var Mongoose = require('mongoose');
+var Schema = Mongoose.Schema;
+
+var beerSchema = new Schema({
+	nameDisplay: {type:String},
+	description: {type:String}
+});
+
+var beer = Mongoose.model('beer', beerSchema);
+
+module.exports = {
+	Beer: beer
+};

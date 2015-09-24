@@ -1,5 +1,5 @@
 import {Component, View, NgFor, NgIf} from 'angular2/angular2';
-import {Http} from 'angular2/http';
+import {Http, Response} from 'angular2/http';
 import {Tooltip} from '../directives/tooltip';
 import {BeerSvc} from'../services/beer-svc';
 
@@ -18,8 +18,10 @@ import {BeerSvc} from'../services/beer-svc';
             <label for="icon_prefix">Beer</label>
             </div>
         </div>
-      <p (click)="viewFavorites()"> {{favorites.length}} Favorites</p>
-      <p>{{result.data.length}} Beers Found</p>
+        <div *ng-if="!loading">
+          <p (click)="viewFavorites()"> {{favorites.length}} Favorites</p>
+          <p>{{result.data.length}} Beers Found</p>
+        </div>
       <div *ng-if="loading" class="progress">
         <div class="indeterminate"></div>
       </div>
@@ -39,18 +41,21 @@ export class Beer {
     result: Object;
     error: Object;
     http:Http;
-    favorites:Array<Object>;
+    favorites:any;
     beerSvc:BeerSvc;
     loading: Boolean;
 
 
     constructor(http: Http, beerSvc:BeerSvc) {
-        this.result = {data:[]};
-        this.favorites = [];
+
         this.http = http;
         this.beerSvc = beerSvc;
-        this.loading = false;
 
+    }
+
+    onInit(){
+        this.result = {data:[]};
+        this.favorites = [];
     }
 
     getBeers(search:string){
@@ -71,8 +76,20 @@ export class Beer {
 
     }
 
-    saveBeer(obj:Object){
-        this.favorites.push(obj);
+    saveBeer(obj:any){
+        this.http.post('/favorites',
+            JSON.stringify({
+                    nameDisplay: obj.nameDisplay,
+                    description: obj.description
+                }))
+        .toRx()
+        .subscribe((res) => {
+            this.favorites.push(res._body);
+            console.log(this.favorites)
+
+        });
+
+
     }
 
     viewFavorites(){

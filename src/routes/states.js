@@ -12,10 +12,6 @@ module.exports = [
 				console.log(res);
 				reply(res);
 			}).sort({name: 1});
-		},
-		config: {
-			description: 'return all states',
-			tags: ['api', 'states', 'get-all']
 		}
 	},
 	{
@@ -27,10 +23,6 @@ module.exports = [
 				if (err) throw err;
 				reply(res[0]);
 			});
-		},
-		config: {
-			description: 'return group by id',
-			tags: ['api', 'user-management', 'groups', 'get']
 		}
 	}
 ];
