@@ -1,4 +1,4 @@
-import {Component, View, NgFor} from 'angular2/angular2';
+import {Component, View, NgFor, NgIf} from 'angular2/angular2';
 import {Http} from 'angular2/http';
 import {Tooltip} from '../directives/tooltip';
 import {BeerSvc} from'../services/beer-svc';
@@ -20,6 +20,9 @@ import {BeerSvc} from'../services/beer-svc';
         </div>
       <p (click)="viewFavorites()"> {{favorites.length}} Favorites</p>
       <p>{{result.data.length}} Beers Found</p>
+      <div *ng-if="loading" class="progress">
+        <div class="indeterminate"></div>
+      </div>
           <ul class="collection" >
           <li class="collection-item avatar" *ng-for="#item of result.data" class="collection-item">
               <span class="title">{{item.nameDisplay}}</span>
@@ -30,7 +33,7 @@ import {BeerSvc} from'../services/beer-svc';
           </ul>
       </article>
     `,
-    directives: [NgFor, Tooltip]
+    directives: [NgFor, NgIf, Tooltip]
 })
 export class Beer {
     result: Object;
@@ -38,6 +41,7 @@ export class Beer {
     http:Http;
     favorites:Array<Object>;
     beerSvc:BeerSvc;
+    loading: Boolean;
 
 
     constructor(http: Http, beerSvc:BeerSvc) {
@@ -45,11 +49,14 @@ export class Beer {
         this.favorites = [];
         this.http = http;
         this.beerSvc = beerSvc;
+        this.loading = false;
 
     }
 
     getBeers(search:string){
+        this.loading = true;
         this.http.get('/beers/'+search).toRx().subscribe(res => {
+            this.loading = false;
             this.result = res.json()
             }
         );
