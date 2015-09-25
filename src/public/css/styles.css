@@ -26,7 +26,13 @@
     fill:#b0bec5;
  }
 
+ .state-selected {
+     fill:red;
+ }
+
  .collection-item {cursor:pointer;}
 .collection .collection-item:hover {background-color:#90caf9;}
 
-/*body {background-image: url(../assets/ml_main-beer-pic.jpg)}*/
+body {background: url(../assets/bg_beer.jpg) #000 no-repeat;
+    background-size: 100%;
+}

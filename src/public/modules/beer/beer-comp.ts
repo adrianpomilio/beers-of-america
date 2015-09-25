@@ -2,6 +2,7 @@ import {Component, View, NgFor, NgIf} from 'angular2/angular2';
 import {Http, Response} from 'angular2/http';
 import {Tooltip} from '../directives/tooltip';
 import {BeerSvc} from'../services/beer-svc';
+import {FavoriteCmp} from '../favorites/favorite-cmp';
 
 
 @Component({
@@ -30,12 +31,13 @@ import {BeerSvc} from'../services/beer-svc';
               <span class="title">{{item.nameDisplay}}</span>
               <p class="description">{{item.description}}
               </p>
-              <a (click)="saveBeer(item)" class="secondary-content btn"><i class="material-icons">favorite</i></a>
+
+              <favorite-btn [data]="item" (favorite)="saveBeer(item)"></favorite-btn>
             </li>
           </ul>
       </article>
     `,
-    directives: [NgFor, NgIf, Tooltip]
+    directives: [NgFor, NgIf, Tooltip, FavoriteCmp]
 })
 export class Beer {
     result: Object;
@@ -50,6 +52,7 @@ export class Beer {
 
         this.http = http;
         this.beerSvc = beerSvc;
+
 
     }
 
@@ -88,8 +91,6 @@ export class Beer {
             console.log(this.favorites)
 
         });
-
-
     }
 
     viewFavorites(){

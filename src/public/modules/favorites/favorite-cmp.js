@@ -10,29 +10,27 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var angular2_1 = require('angular2/angular2');
-var MapCmp = (function () {
-    function MapCmp() {
+var FavoriteCmp = (function () {
+    function FavoriteCmp() {
+        this.favorite = new angular2_1.EventEmitter();
+        this.counter = 0;
     }
-    MapCmp.prototype.onInit = function () {
-        this.selectedState = { name: 'Select a State' };
+    FavoriteCmp.prototype.onFavorite = function () {
+        this.favorite.next(this.data);
+        this.counter = ++this.counter;
     };
-    MapCmp.prototype.stateDetail = function (state) {
-        this.selectedState = state;
-    };
-    MapCmp = __decorate([
+    FavoriteCmp = __decorate([
         angular2_1.Component({
-            selector: 'map-view',
-            properties: [
-                'data',
-                'selectedState']
+            selector: 'favorite-btn',
+            events: ['favorite'],
+            properties: ['data']
         }),
         angular2_1.View({
-            directives: [angular2_1.NgFor],
-            template: "\n    <div class=\"card-panel map-panel\">\n    <h3>{{selectedState.name}}</h3>\n        <svg id=\"usa-map\">\n            <g *ng-for=\"#st of data\" class=\"state\" id=\"{{st.abbr}}\" >\n                <path [attr.d]=\"st.d\" (mouseover)=\"stateDetail(st)\"></path>\n            </g>\n        </svg>\n\n    </div>\n    "
+            template: "\n            <a (click)=\"onFavorite()\" class=\"secondary-content btn\">\n                <i class=\"material-icons\">favorite</i>\n                {{counter}}\n            </a>\n        "
         }), 
         __metadata('design:paramtypes', [])
-    ], MapCmp);
-    return MapCmp;
+    ], FavoriteCmp);
+    return FavoriteCmp;
 })();
-exports.MapCmp = MapCmp;
-//# sourceMappingURL=map-comp.js.map
+exports.FavoriteCmp = FavoriteCmp;
+//# sourceMappingURL=favorite-cmp.js.map

@@ -14,7 +14,7 @@ import {Component, View, NgFor, ElementRef} from 'angular2/angular2';
     <div class="card-panel map-panel">
     <h3>{{selectedState.name}}</h3>
         <svg id="usa-map">
-            <g *ng-for="#st of data" class="state" id="{{st.abbr}}">
+            <g *ng-for="#st of data" class="state" id="{{st.abbr}}" >
                 <path [attr.d]="st.d" (mouseover)="stateDetail(st)"></path>
             </g>
         </svg>
