@@ -4,7 +4,7 @@
 
 .result-panel {min-height: 500px;}
 
-.description {width:450px;}
+.description {width:300px;}
 
 #usa-map {
     height:450px;
@@ -30,9 +30,12 @@
      fill:red;
  }
 
- .collection-item {cursor:pointer;}
+ .collection-item {cursor:pointer; background:none !important;}
 .collection .collection-item:hover {background-color:#90caf9;}
 
 body {background: url(../assets/bg_beer.jpg) #000 no-repeat;
     background-size: 100%;
 }
+.result-panel {float:right; width:500px; max-height:800px; overflow: auto;}
+.nav-wrapper {background: rgba(0, 0, 0, 0.8) !important}
+/*.card-panel {background: rgba(0, 0, 0, 0.8) !important; width:400px;}*/

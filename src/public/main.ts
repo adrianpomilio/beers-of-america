@@ -17,7 +17,7 @@ import {PipeCmp} from './modules/pipes/pipes-comp';
 @View({
   template: `
     <nav>
-        <div class="nav-wrapper blue lighten-3">
+        <div class="nav-wrapper">
             <a href="#" class="brand-logo right">Beers of America</a>
             <ul id="nav-mobile" class="left hide-on-med-and-down">
                     <li ><a [router-link]="['/home']" class="link">Home</a></li>

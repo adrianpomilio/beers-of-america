@@ -30,7 +30,7 @@ var App = (function () {
             selector: 'app'
         }),
         angular2_1.View({
-            template: "\n    <nav>\n        <div class=\"nav-wrapper blue lighten-3\">\n            <a href=\"#\" class=\"brand-logo right\">Beers of America</a>\n            <ul id=\"nav-mobile\" class=\"left hide-on-med-and-down\">\n                    <li ><a [router-link]=\"['/home']\" class=\"link\">Home</a></li>\n                    <li ><a [router-link]=\"['/state']\" class=\"link\">States</a></li>\n                    <li ><a [router-link]=\"['/beer']\" class=\"link\">Beer</a></li>\n                    <li ><a [router-link]=\"['/pipe']\" class=\"link\">Pipe</a></li>\n            </ul>\n        </div>\n    </nav>\n    <div class=\"container top-container\">\n        <router-outlet ></router-outlet>\n    </div>\n  ",
+            template: "\n    <nav>\n        <div class=\"nav-wrapper\">\n            <a href=\"#\" class=\"brand-logo right\">Beers of America</a>\n            <ul id=\"nav-mobile\" class=\"left hide-on-med-and-down\">\n                    <li ><a [router-link]=\"['/home']\" class=\"link\">Home</a></li>\n                    <li ><a [router-link]=\"['/state']\" class=\"link\">States</a></li>\n                    <li ><a [router-link]=\"['/beer']\" class=\"link\">Beer</a></li>\n                    <li ><a [router-link]=\"['/pipe']\" class=\"link\">Pipe</a></li>\n            </ul>\n        </div>\n    </nav>\n    <div class=\"container top-container\">\n        <router-outlet ></router-outlet>\n    </div>\n  ",
             directives: [router_2.RouterLink, router_2.RouterOutlet, states_comp_1.StateCmp, beer_comp_1.Beer, Home_1.Home,]
         }),
         router_2.RouteConfig([
