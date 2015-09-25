@@ -15,7 +15,7 @@ var FavoriteCmp = (function () {
         this.favorite = new angular2_1.EventEmitter();
         this.counter = 0;
     }
-    FavoriteCmp.prototype.onFavorite = function () {
+    FavoriteCmp.prototype.onFavorite = function (event) {
         this.favorite.next(this.data);
         this.counter = ++this.counter;
     };
@@ -26,7 +26,7 @@ var FavoriteCmp = (function () {
             properties: ['data']
         }),
         angular2_1.View({
-            template: "\n            <a (click)=\"onFavorite()\" class=\"secondary-content btn\">\n                <i class=\"material-icons\">favorite</i>\n                {{counter}}\n            </a>\n        "
+            template: "\n            <a (click)=\"onFavorite($event)\" class=\"secondary-content btn\">\n                <i class=\"material-icons\">favorite</i>\n                {{counter}}\n            </a>\n        "
         }), 
         __metadata('design:paramtypes', [])
     ], FavoriteCmp);

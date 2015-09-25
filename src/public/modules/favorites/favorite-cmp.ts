@@ -8,7 +8,7 @@ import {Component, View, EventEmitter} from 'angular2/angular2';
 
 @View({
         template:`
-            <a (click)="onFavorite()" class="secondary-content btn">
+            <a (click)="onFavorite($event)" class="secondary-content btn">
                 <i class="material-icons">favorite</i>
                 {{counter}}
             </a>
@@ -25,7 +25,7 @@ export class FavoriteCmp{
         this.counter = 0;
     }
 
-    onFavorite(){
+    onFavorite(event:any){
         this.favorite.next(this.data);
         this.counter = ++this.counter;
     }

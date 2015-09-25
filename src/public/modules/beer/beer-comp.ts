@@ -32,7 +32,7 @@ import {FavoriteCmp} from '../favorites/favorite-cmp';
               <p class="description">{{item.description}}
               </p>
 
-              <favorite-btn [data]="item" (favorite)="saveBeer(item)"></favorite-btn>
+              <favorite-btn [data]="item" (favorite)="saveBeer($event)"></favorite-btn>
             </li>
           </ul>
       </article>
@@ -79,11 +79,12 @@ export class Beer {
 
     }
 
-    saveBeer(obj:any){
+    saveBeer(event:any){
+        
         this.http.post('/favorites',
             JSON.stringify({
-                    nameDisplay: obj.nameDisplay,
-                    description: obj.description
+                    nameDisplay: event.nameDisplay,
+                    description: event.description
                 }))
         .toRx()
         .subscribe((res) => {

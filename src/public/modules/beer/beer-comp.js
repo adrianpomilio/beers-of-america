@@ -38,11 +38,11 @@ var Beer = (function () {
             this.getBeers(search);
         }
     };
-    Beer.prototype.saveBeer = function (obj) {
+    Beer.prototype.saveBeer = function (event) {
         var _this = this;
         this.http.post('/favorites', JSON.stringify({
-            nameDisplay: obj.nameDisplay,
-            description: obj.description
+            nameDisplay: event.nameDisplay,
+            description: event.description
         }))
             .toRx()
             .subscribe(function (res) {
@@ -58,7 +58,7 @@ var Beer = (function () {
             selector: 'beer-list'
         }),
         angular2_1.View({
-            template: "\n      <article class=\"card-panel result-panel\">\n        <div class=\"row\">\n            <div class=\"input-field col s12\">\n            <i class=\"material-icons prefix\" (click)=\"getBeers(search.value)\">search</i>\n            <input type=\"text\" #search name=\"search\" (keyup)=\"keyupGetBeers($event, search.value)\" />\n            <label for=\"icon_prefix\">Beer</label>\n            </div>\n        </div>\n        <div *ng-if=\"!loading\">\n          <p (click)=\"viewFavorites()\"> {{favorites.length}} Favorites</p>\n          <p>{{result.data.length}} Beers Found</p>\n        </div>\n      <div *ng-if=\"loading\" class=\"progress\">\n        <div class=\"indeterminate\"></div>\n      </div>\n          <ul class=\"collection\" >\n          <li class=\"collection-item avatar\" *ng-for=\"#item of result.data\" class=\"collection-item\">\n              <span class=\"title\">{{item.nameDisplay}}</span>\n              <p class=\"description\">{{item.description}}\n              </p>\n\n              <favorite-btn [data]=\"item\" (favorite)=\"saveBeer(item)\"></favorite-btn>\n            </li>\n          </ul>\n      </article>\n    ",
+            template: "\n      <article class=\"card-panel result-panel\">\n        <div class=\"row\">\n            <div class=\"input-field col s12\">\n            <i class=\"material-icons prefix\" (click)=\"getBeers(search.value)\">search</i>\n            <input type=\"text\" #search name=\"search\" (keyup)=\"keyupGetBeers($event, search.value)\" />\n            <label for=\"icon_prefix\">Beer</label>\n            </div>\n        </div>\n        <div *ng-if=\"!loading\">\n          <p (click)=\"viewFavorites()\"> {{favorites.length}} Favorites</p>\n          <p>{{result.data.length}} Beers Found</p>\n        </div>\n      <div *ng-if=\"loading\" class=\"progress\">\n        <div class=\"indeterminate\"></div>\n      </div>\n          <ul class=\"collection\" >\n          <li class=\"collection-item avatar\" *ng-for=\"#item of result.data\" class=\"collection-item\">\n              <span class=\"title\">{{item.nameDisplay}}</span>\n              <p class=\"description\">{{item.description}}\n              </p>\n\n              <favorite-btn [data]=\"item\" (favorite)=\"saveBeer($event)\"></favorite-btn>\n            </li>\n          </ul>\n      </article>\n    ",
             directives: [angular2_1.NgFor, angular2_1.NgIf, tooltip_1.Tooltip, favorite_cmp_1.FavoriteCmp]
         }), 
         __metadata('design:paramtypes', [http_1.Http, beer_svc_1.BeerSvc])
